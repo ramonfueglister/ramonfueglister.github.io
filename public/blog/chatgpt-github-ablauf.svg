@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Von den eigenen Notizen zum veröffentlichten Blog</title>
+  <desc id="desc">Vier verbundene Stationen: Notizen, Coding-Agent, Git und fertiger Blog.</desc>
+  <rect width="1200" height="560" rx="32" fill="#f1e8d8"/>
+  <path d="M130 280H1070" stroke="#1556a6" stroke-width="5" stroke-linecap="round" stroke-dasharray="10 14"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(155 280)">
+      <circle r="88" fill="#fffefb" stroke="#10254a" stroke-width="3"/>
+      <path d="M-30-20c15-35 75-25 68 20-4 25-34 25-35 49M2 70h1" fill="none" stroke="#c56643" stroke-width="10" stroke-linecap="round"/>
+      <text y="130" font-size="26" font-weight="700" fill="#10254a">1 · NOTIZEN</text>
+    </g>
+    <g transform="translate(450 280)">
+      <circle r="88" fill="#1556a6"/>
+      <path d="M-42-25h84v55h-37l-22 20 4-20h-29z" fill="none" stroke="#fffefb" stroke-width="7" stroke-linejoin="round"/>
+      <text y="130" font-size="26" font-weight="700" fill="#10254a">2 · CODING-AGENT</text>
+    </g>
+    <g transform="translate(750 280)">
+      <circle r="88" fill="#10254a"/>
+      <path d="M-44 35V-35h88v70M-20-35v-22h40v22M-20 0h40" fill="none" stroke="#f1b846" stroke-width="7"/>
+      <text y="130" font-size="26" font-weight="700" fill="#10254a">3 · GIT &amp; GITHUB</text>
+    </g>
+    <g transform="translate(1045 280)">
+      <circle r="88" fill="#c56643"/>
+      <rect x="-48" y="-38" width="96" height="72" rx="5" fill="none" stroke="#fffefb" stroke-width="7"/>
+      <path d="M-48-13h96M-31-26h2M-18-26h2" stroke="#fffefb" stroke-width="6" stroke-linecap="round"/>
+      <text y="130" font-size="26" font-weight="700" fill="#10254a">4 · DEIN BLOG</text>
+    </g>
+  </g>
+</svg>

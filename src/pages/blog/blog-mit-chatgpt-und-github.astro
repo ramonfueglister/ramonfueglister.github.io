@@ -1,0 +1,531 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const toc = [
+  ['idee', 'Wofür ich den Agenten nutze'],
+  ['bereit', 'Vorbereitung'],
+  ['start', 'Der erste Auftrag'],
+  ['entwurf', 'Die Vorschau prüfen'],
+  ['inhalt', 'Aus Notizen wird ein Beitrag'],
+  ['github', 'Die Website veröffentlichen'],
+  ['alltag', 'Neue Beiträge ergänzen'],
+  ['bilder', 'Eigene Bilder einbauen'],
+  ['leitplanken', 'Vor jedem Push'],
+  ['probleme', 'Fehlersuche'],
+];
+---
+
+<Base
+  title="Mit einem KI-Agenten zum eigenen PICTS-Blog"
+  description="Eine praktische Anleitung für Lehrpersonen: Einen PICTS-Blog mit einem Coding-Agenten erstellen, testen und auf GitHub Pages veröffentlichen."
+>
+  <article>
+    <header class="article-hero">
+      <a class="back" href="/blog/">← Alle Beiträge</a>
+      <div class="hero-grid">
+        <div>
+          <p class="category">Werkstattbericht · PICTS</p>
+          <h1>Einen PICTS-Blog mit einem Coding-Agenten erstellen</h1>
+        </div>
+        <div class="hero-aside">
+          <p class="lead">
+            Ich lasse den Coding-Agenten die Website aufsetzen und auf GitHub
+            veröffentlichen. Meine Texte schreibe und prüfe ich selbst.
+          </p>
+          <dl>
+            <div><dt>Stand</dt><dd>September 2026</dd></div>
+            <div><dt>Erster Aufbau</dt><dd>rund 60 Minuten</dd></div>
+            <div><dt>Weiterer Beitrag</dt><dd>10–20 Minuten</dd></div>
+            <div><dt>Vorkenntnisse</dt><dd>keine</dd></div>
+          </dl>
+        </div>
+      </div>
+    </header>
+
+    <figure class="wide-figure">
+      <img
+        src="/blog/chatgpt-github-ablauf.svg"
+        alt="Der Weg von den eigenen Notizen über einen Coding-Agenten und GitHub zum fertigen Blog"
+        width="1200"
+        height="560"
+      />
+      <figcaption>Der Agent arbeitet direkt im Projektordner. Wenn alles passt, überträgt er die Website mit Git zu GitHub.</figcaption>
+    </figure>
+
+    <div class="article-shell">
+      <aside class="toc" aria-label="Inhaltsverzeichnis">
+        <p>In dieser Anleitung</p>
+        <ol>
+          {toc.map(([href, label]) => <li><a href={`#${href}`}>{label}</a></li>)}
+        </ol>
+      </aside>
+
+      <div class="prose">
+        <section id="idee">
+          <p class="overline">Worum es geht</p>
+          <h2>Wofür ich den Agenten nutze</h2>
+          <p class="large">
+            Ich wollte einen Ort, an dem sichtbar wird, was in meiner
+            PICTS-Arbeit tatsächlich passiert: kleine Versuche, brauchbare
+            Anleitungen, Umwege und Dinge, die sich im Unterricht bewährt haben.
+          </p>
+          <p>
+            Der Coding-Agent arbeitet direkt in meinem Projektordner. Dort legt
+            er die Website an, startet die Vorschau und behebt technische Fehler.
+            Wenn ich die Seite geprüft habe, veröffentlicht er sie mit Git.
+          </p>
+          <p>
+            Ich muss also keinen Code aus dem Chat kopieren. Ich gebe dem Agenten
+            stattdessen einen Auftrag wie: «Schau dir das Projekt an, setze diese
+            Änderung um, teste sie und zeig mir das Ergebnis.»
+          </p>
+
+          <div class="split">
+            <div>
+              <strong>Im Projektordner</strong>
+              <ul>
+                <li>Dateien und Ordner anlegen</li>
+                <li>Astro installieren und konfigurieren</li>
+                <li>Design und Navigation umsetzen</li>
+                <li>die Vorschau starten und technische Tests ausführen</li>
+                <li>Änderungen mit Git dokumentieren und veröffentlichen</li>
+              </ul>
+            </div>
+            <div>
+              <strong>Vor der Veröffentlichung</strong>
+              <ul>
+                <li>Inhalt und Ton der Beiträge</li>
+                <li>Fakten, Quellen und Bildrechte</li>
+                <li>die letzte Fassung</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="bereit">
+          <p class="overline">Vorbereitung</p>
+          <h2>Was du für den Start brauchst</h2>
+          <p>
+            Du brauchst die ChatGPT-Desktop-App mit einem Coding-Agenten, der
+            auf einen lokalen Ordner zugreifen und Befehle ausführen darf. Je
+            nach Abo oder App-Version heisst diese Funktion beispielsweise
+            <strong>Codex</strong>, <strong>Coding</strong> oder
+            <strong>Agentenmodus</strong>. Ein gewöhnlicher Chat ohne
+            Ordnerzugriff genügt nicht.
+          </p>
+          <ul class="checklist">
+            <li>Installiere die Desktop-App nur über die offizielle OpenAI-Seite oder den offiziellen App Store.</li>
+            <li>Erstelle ein kostenloses Konto auf <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">github.com</a>.</li>
+            <li>Wähle einen kurzen GitHub-Namen. Er wird Teil der späteren Adresse.</li>
+            <li>Aktiviere bei GitHub die Zwei-Faktor-Authentifizierung.</li>
+            <li>Erstelle auf deinem Computer einen leeren Ordner, zum Beispiel <code>picts-blog</code>.</li>
+            <li>Öffne genau diesen Ordner als Arbeitsbereich im Coding-Agenten.</li>
+          </ul>
+          <div class="note">
+            <strong>Woran erkenne ich den richtigen Modus?</strong> Der Agent
+            zeigt an, welche Dateien er verändert hat, kann Terminalbefehle
+            ausführen und fragt vor heiklen Aktionen nach deiner Erlaubnis. Siehst
+            du nur ein Texteingabefeld ohne Projekt- oder Ordnerzugriff, bist du
+            noch im normalen Chat.
+          </div>
+          <p>
+            Git und Node.js braucht das Projekt ebenfalls. Du musst beides nicht
+            auf Verdacht selbst installieren. Gib dem Agenten zuerst diesen
+            kurzen Auftrag:
+          </p>
+          <pre><code>Prüfe bitte, ob auf diesem Computer Git, Node.js und die GitHub CLI
+vorhanden sind. Verändere noch nichts. Erkläre mir in einfachen
+Worten, was fehlt, und installiere Fehlendes erst nach meiner Freigabe.</code></pre>
+          <p>
+             Auf einem Schulgerät kann für eine Installation das Passwort eines
+             Administratorkontos nötig sein. Falls du dieses nicht hast, muss der
+             schulische IT-Support die Installation übernehmen.
+          </p>
+        </section>
+
+        <section id="start">
+          <p class="step">Projekt anlegen</p>
+          <h2>Der erste Auftrag</h2>
+          <p>
+            Sag zu Beginn, wofür der Blog gedacht ist, wer ihn lesen soll und was
+            der Agent nicht einbauen soll. Damit kann er eine erste Fassung
+            erstellen.
+          </p>
+
+          <figure>
+            <img
+              src="/blog/chatgpt-prompt.svg"
+              alt="Ein kompaktes Briefing für den Coding-Agenten mit Ziel, Publikum, Inhalt und Arbeitsweise"
+              width="1200"
+              height="650"
+            />
+            <figcaption>Im ersten Auftrag stehen Zweck, Zielgruppe und die wichtigsten Vorgaben. Den technischen Aufbau schlägt der Agent vor.</figcaption>
+          </figure>
+
+          <h3>Diesen Auftrag kannst du anpassen</h3>
+          <pre><code>Wir bauen in diesem Ordner meinen persönlichen PICTS-Blog.
+
+Leserinnen und Leser sind Lehrpersonen an Berufsfachschulen. Ich
+möchte dort knapp und konkret zeigen, was ich in meiner PICTS-Arbeit
+ausprobiere, was funktioniert und was andere übernehmen können.
+
+Bitte:
+- erstelle eine kleine, gut wartbare Website mit Astro
+- richte Beiträge als einfache Markdown-Dateien ein
+- gestalte die Seite ruhig, eigenständig und auf dem Handy gut lesbar
+- verwende Schweizer Rechtschreibung
+- baue eine Startseite, eine Blogübersicht und einen Musterbeitrag
+- verwende vorerst keine Datenbank, kein CMS und kein Tracking
+- bereite die Veröffentlichung auf GitHub Pages vor
+
+Arbeite direkt in diesem Ordner. Triff vernünftige technische
+Entscheide selbst. Starte danach die lokale Vorschau, prüfe den Build
+und zeige mir, was du gemacht hast. Noch nichts veröffentlichen.</code></pre>
+          <p>
+            Nach diesem Auftrag legt der Agent die Projektdateien an, installiert
+            die nötigen Pakete und startet die Seite lokal. Dabei erscheinen
+            unter Umständen Rückfragen oder Freigaben für Befehle. Lies sie
+            kurz. Eine Installation im Projektordner ist normal; Zugriff auf
+            völlig andere Ordner wäre ein Grund nachzufragen.
+          </p>
+          <p>
+            Gib nicht zu viele technische Einzelheiten vor. Für diesen Blog
+            reichen Astro und Beiträge in Markdown. Zusätzliche Bibliotheken
+            machen das Projekt schnell unnötig kompliziert.
+          </p>
+        </section>
+
+        <section id="entwurf">
+          <p class="step">Vorschau</p>
+          <h2>Die erste Fassung ansehen</h2>
+          <p>
+            Wenn der Agent fertig ist, sollte er eine Adresse für die lokale
+            Vorschau nennen, häufig <code>http://localhost:4321</code>. Öffne sie
+            im Browser. Die Website ist zu diesem Zeitpunkt nur auf deinem
+            Computer sichtbar.
+          </p>
+          <p>
+            Prüfe zunächst die sichtbare Seite aus der Perspektive der
+            Leserinnen und Leser, nicht den Programmcode:
+          </p>
+          <ul class="checklist">
+            <li>Verstehe ich auf der Startseite sofort, worum es geht?</li>
+            <li>Kann ich den ersten Beitrag ohne Suchen öffnen?</li>
+            <li>Ist der Text auf dem Smartphone angenehm lesbar?</li>
+            <li>Wirkt das Design nach mir oder nach einer beliebigen Firmenwebsite?</li>
+            <li>Gibt es Behauptungen oder Angaben, die ich nie gemacht habe?</li>
+          </ul>
+          <p>
+            Beschreibe bei einer Rückmeldung möglichst konkret, was du auf der
+            Seite beobachtest. Statt «mach es schöner» könntest du schreiben:
+          </p>
+          <div class="conversation">
+            <p><span>Du</span>Die Startseite wirkt wie eine Agentur. Nimm die Werbesprache heraus. Weniger Karten, weniger Rundungen, mehr ruhige Textfläche. Der Blog soll nach persönlichem Werkstattbuch aussehen.</p>
+            <p><span>Agent</span>Ich passe nur Gestaltung und Ton an, lasse Struktur und Inhalte aber bestehen. Danach teste ich Desktop und Mobilansicht erneut.</p>
+          </div>
+          <p>
+            Nach einer grösseren Änderung lasse ich den Agenten den Build und die
+            Mobilansicht nochmals prüfen. So sehe ich Fehler, bevor die Seite
+            veröffentlicht wird.
+          </p>
+        </section>
+
+        <section id="inhalt">
+          <p class="step">Erster Text</p>
+          <h2>Aus Notizen wird ein Beitrag</h2>
+          <p>
+            Der Musterbeitrag dient nur zum Testen der Website. Ersetze ihn durch
+            Material aus deiner eigenen PICTS-Arbeit. Ungeschliffene Stichworte
+            genügen; ganze Sätze sind nicht nötig.
+          </p>
+          <pre><code>Der Musterbeitrag kommt weg. Interviewe mich stattdessen zu meinem
+letzten PICTS-Einsatz. Stelle immer nur eine Frage und höchstens sechs
+Fragen insgesamt. Frage nach Ausgangslage, meinem konkreten Vorgehen,
+Reaktion der Lehrpersonen, Stolpersteinen und dem nächsten Schritt.
+
+Schreibe erst danach einen Entwurf. Erfinde nichts und markiere
+fehlende Angaben sichtbar.</code></pre>
+          <p>
+            Durch die Fragen bezieht sich der Entwurf auf eine bestimmte
+            Erfahrung. Das ist meist ergiebiger als ein allgemeiner Auftrag wie
+            «Schreib einen Blogbeitrag über KI im Unterricht».
+          </p>
+          <h3>Diese Fragen helfen beim Schreiben</h3>
+          <ol>
+            <li>Was war die konkrete Ausgangslage?</li>
+            <li>Was habe ich tatsächlich gemacht?</li>
+            <li>Was hat überraschend gut oder schlecht funktioniert?</li>
+            <li>Was können Kolleginnen und Kollegen direkt übernehmen?</li>
+            <li>Was probiere ich beim nächsten Mal anders?</li>
+          </ol>
+          <div class="warning">
+            <strong>Streichprobe:</strong> Könnte derselbe Text unverändert auf
+            hundert anderen Bildungsblogs stehen, ist er noch nicht fertig.
+            Bitte den Agenten dann nicht um «mehr Persönlichkeit», sondern gib
+            ihm eine konkrete Szene, eine Beobachtung oder einen eigenen Fehler.
+          </div>
+        </section>
+
+        <section id="github">
+          <p class="step">GitHub Pages</p>
+          <h2>Die Website veröffentlichen</h2>
+          <p>
+            Der Agent richtet Git ein, erstellt das Repository und überträgt die
+            Website. Wenn GitHub im Browser nach einer Anmeldung oder einer
+            Berechtigung fragt, bestätigst du das selbst.
+          </p>
+          <pre><code>Die lokale Fassung passt. Veröffentliche das Projekt jetzt auf GitHub
+Pages.
+
+Prüfe zuerst, ob sensible oder unnötige Dateien im Projekt liegen.
+Initialisiere Git, erstelle sinnvolle Commits und lege über die GitHub
+CLI ein öffentliches Repository an. Richte einen GitHub-Actions-
+Workflow für Astro und GitHub Pages ein. Veröffentliche erst, nachdem
+der lokale Build erfolgreich war.
+
+Mein gewünschter Repository-Name ist: [deinname.github.io]
+
+Falls eine Anmeldung oder eine Bestätigung im Browser nötig ist,
+halte an und sage mir genau, was ich bestätigen muss.</code></pre>
+          <p>
+            Beim ersten Mal öffnet GitHub sehr wahrscheinlich ein Browserfenster
+            zur Anmeldung. Prüfe, dass die Adresse wirklich zu
+            <code>github.com</code> gehört. Die Anmeldung und die angezeigten
+            Berechtigungen solltest du selbst prüfen und bestätigen.
+          </p>
+
+          <figure>
+            <img
+              src="/blog/github-schritte.svg"
+              alt="Der Agent prüft den Blog, erstellt einen Commit, überträgt ihn zu GitHub und GitHub Pages veröffentlicht die Website"
+              width="1200"
+              height="610"
+            />
+            <figcaption>Der Weg zur Veröffentlichung läuft über Git. Dateien werden nicht einzeln im Browser hochgeladen.</figcaption>
+          </figure>
+
+          <p>
+            Nach der Veröffentlichung gibt der Agent die Webadresse und den Link
+            zum GitHub-Repository aus. Bis die Seite erreichbar ist, können ein
+            paar Minuten vergehen. Danach lasse ich sie nochmals prüfen:
+          </p>
+          <pre><code>Öffne die veröffentlichte Adresse. Prüfe Navigation, alle internen
+Links, Bilder und die Darstellung mit schmalem Bildschirm. Lies auch
+die GitHub-Actions-Ausgabe auf Fehler. Ändere nur etwas, wenn du einen
+konkreten Fehler findest.</code></pre>
+        </section>
+
+        <section id="alltag">
+          <p class="step">Später</p>
+          <h2>Neue Beiträge ergänzen</h2>
+          <p>
+            Für weitere Beiträge öffnest du denselben Projektordner wieder im
+            Agenten. Du brauchst weder GitHub im Browser noch einen Dateiupload.
+            Der Agent liest die vorhandene Struktur ein und legt den Beitrag am
+            vorgesehenen Ort ab.
+          </p>
+          <pre><code>Erstelle einen neuen Blogbeitrag im bestehenden Blog.
+
+Titel: Was vom KI-Kurzworkshop übrig blieb
+Datum: 18. September 2026
+
+Meine Notizen:
+- 45 Minuten mit zwölf Lehrpersonen
+- Ziel war nicht Prompting, sondern Aufgaben kritisch prüfen
+- Vergleich von drei KI-Antworten zur gleichen Prüfungsfrage
+- gute Diskussion über plausible Fehler
+- Zeit für den Transfer ins eigene Fach fehlte
+- nächstes Mal 20 Minuten weniger Input, dafür eigener Fachauftrag
+
+Schreibe knapp und sachlich in meiner bisherigen Tonalität. Keine
+allgemeine Einleitung über die digitale Transformation. Zeige mir
+zuerst den Entwurf. Veröffentliche noch nichts.</code></pre>
+          <p>
+            Nach deiner Textfreigabe folgt nur noch:
+          </p>
+          <pre><code>Übernimm den freigegebenen Text. Prüfe die Seite und veröffentliche
+die Änderung mit einem passenden Git-Commit. Kontrolliere danach die
+öffentliche Seite.</code></pre>
+          <p>
+            Jede Änderung wird im Repository gespeichert. Falls später etwas
+            nicht mehr funktioniert, kann der Agent die älteren Fassungen
+            vergleichen und den Fehler suchen.
+          </p>
+        </section>
+
+        <section id="bilder">
+          <p class="step">Bilder</p>
+          <h2>Eigene Bilder einbauen</h2>
+          <p>
+            Ziehe das Bild in den Chat oder lege es in den Projektordner. Sag dem
+            Agenten, in welchen Beitrag es gehört. Er benennt und verkleinert die
+            Datei und baut sie an der gewünschten Stelle ein. Beim nächsten Push
+            gelangt sie zusammen mit dem restlichen Projekt zu GitHub.
+          </p>
+          <pre><code>Verwende das beigefügte Bild im neuen Beitrag. Entferne vorhandene
+Metadaten, verkleinere es auf eine für die Website geeignete Grösse
+und speichere es im bestehenden
+Bilderordner. Schreibe einen sachlichen Alternativtext. Prüfe danach,
+ob das Bild auf breiten und schmalen Bildschirmen korrekt dargestellt
+wird. Noch nicht veröffentlichen.</code></pre>
+          <p>
+            Ob Lernende auf einem Bild erkennbar sind, eine Einwilligung vorliegt
+            oder ein fremdes Bild verwendet werden darf, prüfst du selbst.
+          </p>
+          <p>
+            Ein eigenes Bild von Material, Arbeitsplatz oder Ergebnis ist oft
+            aussagekräftiger als ein generisches KI-Symbolbild und lässt sich
+            rechtlich klarer einordnen, sofern darauf weder Personen noch
+            vertrauliche Angaben erkennbar sind.
+          </p>
+        </section>
+
+        <section id="leitplanken">
+          <p class="overline">Vor jedem Push</p>
+          <h2>Vor der Veröffentlichung prüfen</h2>
+          <p>
+            GitHub Pages und das öffentliche Repository sind für alle lesbar.
+            Prüfe deshalb vor jedem Push, welche Texte, Bilder und Dateien der
+            Agent überträgt.
+          </p>
+          <ul class="checklist">
+            <li>Keine Namen, Noten, Arbeiten oder Kontaktdaten von Lernenden veröffentlichen.</li>
+            <li>Keine internen Schulunterlagen, Zugangsdaten oder vertraulichen Sitzungsnotizen in den Projektordner legen.</li>
+            <li>Fremde Texte und Bilder nur mit passender Lizenz und Quellenangabe verwenden.</li>
+            <li>Alle fachlichen Behauptungen und Links selbst prüfen.</li>
+            <li>Schulinterne, kantonale und datenschutzrechtliche Vorgaben beachten.</li>
+            <li>Den Agenten vor einer Veröffentlichung immer nochmals sagen lassen, welche Dateien er überträgt.</li>
+          </ul>
+          <p>
+            Dafür verwende ich diesen Auftrag:
+          </p>
+          <pre><code>Führe vor der Veröffentlichung einen Datenschutz- und
+Sicherheitscheck des Projekts durch. Suche nach Personendaten,
+E-Mail-Adressen, Zugangsdaten, lokalen Dateipfaden, Metadaten in
+Bildern und versehentlich eingecheckten Konfigurationsdateien.
+Berichte zuerst. Lösche oder veröffentliche nichts ohne meine Freigabe.</code></pre>
+        </section>
+
+        <section id="probleme">
+          <p class="overline">Fehlersuche</p>
+          <h2>Falls etwas nicht klappt</h2>
+          <p>
+            Bei der Installation, beim Build oder beim Veröffentlichen kann eine
+            Fehlermeldung auftauchen. Schicke nicht nur «Es geht nicht», sondern
+            lass den Agenten die Meldung lesen und zuerst nach der Ursache suchen.
+          </p>
+          <div class="troubleshooting">
+            <details>
+              <summary>Die lokale Vorschau startet nicht</summary>
+              <p>Schreibe: «Starte die Vorschau selbst, lies die vollständige Fehlermeldung und bestimme zuerst die Ursache. Nimm danach die kleinste nötige Änderung vor und teste erneut.»</p>
+            </details>
+            <details>
+              <summary>Die GitHub-Anmeldung funktioniert nicht</summary>
+              <p>Schreibe: «Prüfe den Anmeldestatus der GitHub CLI. Falls eine neue Anmeldung nötig ist, starte den offiziellen Browser-Login und warte auf meine Bestätigung.» Gib niemals Passwort oder Zwei-Faktor-Code in den Chat ein.</p>
+            </details>
+            <details>
+              <summary>Der Build ist erfolgreich, die Seite aber nicht online</summary>
+              <p>Schreibe: «Prüfe Repository-Einstellungen, GitHub-Actions-Läufe und die Pages-Konfiguration. Zeige mir den konkreten Fehler, bevor du Einstellungen änderst.»</p>
+            </details>
+            <details>
+              <summary>Nach einer Änderung sieht alles anders aus</summary>
+              <p>Schreibe: «Zeige mir den Git-Diff dieser Änderung. Stelle keine Dateien pauschal zurück. Erkläre, welche Änderung das Design beeinflusst hat, und korrigiere nur diese Stelle.»</p>
+            </details>
+            <details>
+              <summary>Der Text klingt nach KI</summary>
+              <p>Gib keinen Stilbefehl wie «menschlicher» ein. Nenne die konkreten Probleme: «Streiche die allgemeine Einleitung, Werbesprache, Dreierlisten und Fazit-Floskeln. Behalte meine Beobachtungen und meine Satzlänge. Erfinde keine neuen Erfahrungen.»</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="finish">
+          <p class="overline">Danach</p>
+          <h2>Beim nächsten Beitrag</h2>
+          <p class="closing">
+            Öffne wieder denselben Projektordner und gib dem Agenten deine
+            Notizen. Lies den Entwurf, lass die Seite testen und gib erst dann
+            die Veröffentlichung frei.
+          </p>
+          <a class="back-to-blog" href="/blog/">Zurück zur Blogübersicht →</a>
+        </section>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  article { --article-width: 760px; }
+  .article-hero { width: min(100%, var(--max)); margin-inline: auto; padding: 9rem var(--pad) clamp(4rem, 9vw, 8rem); }
+  .back { display: inline-block; margin-bottom: clamp(3rem, 7vw, 6rem); color: var(--aegean); font-size: .82rem; font-weight: 600; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(18rem, .65fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: end; }
+  .category, .overline, .step { margin-bottom: 1rem; color: var(--terra); font-size: .76rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  h1 { max-width: 12ch; font-size: clamp(3.5rem, 8vw, 7.2rem); letter-spacing: -.035em; line-height: .88; }
+  .lead { margin-bottom: 2rem; font-family: var(--serif); font-size: clamp(1.35rem, 2.5vw, 1.7rem); line-height: 1.25; }
+  .hero-aside dl { border-top: 1px solid var(--line); }
+  .hero-aside dl div { display: flex; justify-content: space-between; gap: 1rem; padding-block: .55rem; border-bottom: 1px solid var(--line); font-size: .78rem; }
+  .hero-aside dt { color: rgba(16, 37, 74, .58); }
+  .wide-figure { width: min(calc(100% - 2 * var(--pad)), var(--max)); margin: 0 auto clamp(4rem, 9vw, 8rem); }
+  figure img { width: 100%; height: auto; border-radius: clamp(.75rem, 2vw, 1.5rem); }
+  figcaption { margin-top: .75rem; color: rgba(16, 37, 74, .62); font-size: .78rem; line-height: 1.5; }
+  .article-shell { display: grid; grid-template-columns: minmax(12rem, 230px) minmax(0, var(--article-width)); gap: clamp(3rem, 7vw, 7rem); width: min(100%, 1160px); margin-inline: auto; padding: 0 var(--pad) clamp(7rem, 13vw, 12rem); }
+  .toc { position: sticky; top: 6.5rem; align-self: start; padding-left: 1rem; border-left: 2px solid var(--line); }
+  .toc p { margin-bottom: .75rem; color: var(--aegean); font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .toc ol { list-style: none; }
+  .toc li + li { margin-top: .38rem; }
+  .toc a { color: rgba(16, 37, 74, .66); font-size: .76rem; line-height: 1.35; }
+  .toc a:hover { color: var(--terra); }
+  .prose section { scroll-margin-top: 7rem; padding-top: clamp(4rem, 9vw, 7rem); border-top: 1px solid var(--line); }
+  .prose section:first-child { padding-top: 0; border-top: 0; }
+  .prose section + section { margin-top: clamp(4rem, 9vw, 7rem); }
+  .prose h2 { margin-bottom: 1.75rem; font-size: clamp(2.6rem, 6vw, 4.5rem); letter-spacing: -.025em; line-height: .95; }
+  .prose h3 { margin: 2.8rem 0 1rem; font-family: var(--sans); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+  .prose p, .prose li, .prose dd { font-size: 1.03rem; }
+  .prose p + p { margin-top: 1.25rem; }
+  .prose .large { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.85rem); line-height: 1.35; }
+  .prose a:not(.back-to-blog) { color: var(--aegean); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+  .prose ul, .prose ol:not(.big-steps) { margin: 1.4rem 0 1.8rem; padding-left: 1.4rem; }
+  .prose li { padding-left: .35rem; }
+  .prose li + li { margin-top: .72rem; }
+  .prose code { padding: .12em .35em; border-radius: .3rem; background: var(--stucco); font-size: .87em; }
+  .prose pre { max-width: 100%; overflow-x: auto; margin: 1.25rem 0 2rem; padding: clamp(1.15rem, 3vw, 1.75rem); border-radius: 1rem; background: var(--night); color: #eef5ff; font: 400 .83rem/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; white-space: pre-wrap; }
+  .prose pre code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
+  .prose figure { margin: 2.5rem 0; }
+  .note, .tip, .warning { margin: 2rem 0; padding: 1.25rem 1.4rem; border-left: 4px solid var(--aegean); border-radius: 0 .75rem .75rem 0; background: rgba(21, 86, 166, .08); font-size: .95rem; }
+  .tip { border-color: var(--sun); background: rgba(241, 184, 70, .13); }
+  .warning { border-color: var(--terra); background: rgba(197, 102, 67, .1); }
+  .checklist { padding-left: 0 !important; list-style: none; }
+  .checklist li { position: relative; padding-left: 2rem; }
+  .checklist li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--olive); font-weight: 700; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 2.5rem 0; border: 1px solid var(--line); background: var(--line); }
+  .split > div { padding: 1.35rem; background: var(--wash); }
+  .split strong { color: var(--aegean); }
+  .split ul { margin-bottom: 0; }
+  .conversation { margin: 2rem 0; padding: 1.2rem; border-radius: 1rem; background: var(--stucco); }
+  .conversation p { display: grid; grid-template-columns: 3.5rem 1fr; gap: 1rem; margin: 0; padding: .8rem; border-radius: .7rem; background: var(--white); font-size: .92rem; }
+  .conversation p + p { margin-top: .7rem; }
+  .conversation span { color: var(--terra); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .troubleshooting { border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { position: relative; padding: 1.25rem 2.5rem 1.25rem 0; cursor: pointer; font-weight: 600; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; position: absolute; right: .25rem; color: var(--terra); font-size: 1.4rem; font-weight: 400; }
+  details[open] summary::after { content: '−'; }
+  details p { padding: 0 2rem 1.4rem 0; color: rgba(16, 37, 74, .76); font-size: .94rem; }
+  .big-steps { margin: 2rem 0 3rem; list-style: none; }
+  .big-steps li { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: baseline; padding: 1rem 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.7rem); }
+  .big-steps li:first-child { border-top: 1px solid var(--line); }
+  .big-steps span { color: var(--terra); font-family: var(--serif); font-style: italic; }
+  .closing { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem) !important; line-height: 1.3; }
+  .back-to-blog { display: inline-block; margin-top: 2rem; padding: .8rem 1.3rem; border: 1px solid var(--aegean); border-radius: 999px; color: var(--aegean); font-size: .88rem; font-weight: 600; }
+  @media (max-width: 900px) {
+    .article-shell { grid-template-columns: 1fr; }
+    .toc { position: static; padding: 1.25rem; border: 1px solid var(--line); border-radius: .75rem; }
+    .toc ol { columns: 2; column-gap: 2rem; }
+  }
+  @media (max-width: 700px) {
+    .hero-grid, .split { grid-template-columns: 1fr; }
+    .toc ol { columns: 1; }
+    .prose p, .prose li { font-size: .98rem; }
+    .conversation p { grid-template-columns: 1fr; gap: .35rem; }
+  }
+</style>

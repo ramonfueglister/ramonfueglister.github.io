@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Einfacher Aufbau eines Blogs</title>
+  <desc id="desc">Ein Ordner enthält die Startseite index.html, einen Bilderordner und zwei Beitragsdateien.</desc>
+  <rect width="1200" height="560" rx="32" fill="#f1e8d8"/>
+  <g font-family="Arial, sans-serif">
+    <path d="M95 72h320l52 56h638v367H95z" fill="#fffefb" stroke="#10254a" stroke-width="4" stroke-linejoin="round"/>
+    <text x="140" y="112" fill="#10254a" font-size="28" font-weight="700">deinname.github.io</text>
+    <path d="M170 185v245M170 230h55M170 315h55M170 400h55" fill="none" stroke="#b0a58f" stroke-width="4"/>
+    <rect x="225" y="197" width="58" height="65" rx="4" fill="#1556a6"/>
+    <path d="M266 197v18h17" fill="none" stroke="#fff" stroke-width="4"/>
+    <text x="315" y="240" fill="#10254a" font-size="28" font-weight="700">index.html</text>
+    <text x="575" y="240" fill="#52677f" font-size="23">Startseite und Blogübersicht</text>
+    <rect x="225" y="282" width="58" height="65" rx="4" fill="#c56643"/>
+    <path d="M266 282v18h17" fill="none" stroke="#fff" stroke-width="4"/>
+    <text x="315" y="325" fill="#10254a" font-size="28" font-weight="700">mein-erster-beitrag.html</text>
+    <text x="720" y="325" fill="#52677f" font-size="23">Ein Blogbeitrag</text>
+    <path d="M225 387h78l15 14h100v56H225z" fill="#f1b846" stroke="#10254a" stroke-width="3" stroke-linejoin="round"/>
+    <text x="445" y="432" fill="#10254a" font-size="28" font-weight="700">bilder/</text>
+    <text x="575" y="432" fill="#52677f" font-size="23">Fotos und Grafiken</text>
+  </g>
+</svg>

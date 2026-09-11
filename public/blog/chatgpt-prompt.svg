@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Briefing für einen Coding-Agenten</title>
+  <desc id="desc">Ein Agentenfenster zeigt Ziel, Publikum, Inhalt und Arbeitsweise für den PICTS-Blog.</desc>
+  <rect width="1200" height="650" rx="32" fill="#10254a"/>
+  <rect x="68" y="55" width="1064" height="540" rx="22" fill="#fffefb"/>
+  <rect x="68" y="55" width="1064" height="62" rx="22" fill="#e9e2d5"/>
+  <circle cx="105" cy="86" r="8" fill="#c56643"/><circle cx="132" cy="86" r="8" fill="#f1b846"/><circle cx="159" cy="86" r="8" fill="#63cbd4"/>
+  <text x="600" y="94" fill="#10254a" font-family="Arial, sans-serif" font-size="21" text-anchor="middle" font-weight="700">Coding-Agent · picts-blog</text>
+  <rect x="118" y="155" width="710" height="365" rx="20" fill="#e8f2f4"/>
+  <g fill="#10254a" font-family="Arial, sans-serif" font-size="24">
+    <text x="155" y="204" font-weight="700">Ziel</text><text x="320" y="204">Persönlicher PICTS-Blog</text>
+    <text x="155" y="258" font-weight="700">Publikum</text><text x="320" y="258">Lehrpersonen</text>
+    <text x="155" y="312" font-weight="700">Inhalt</text><text x="320" y="312">Praxisberichte in Markdown</text>
+    <text x="155" y="366" font-weight="700">Technik</text><text x="320" y="366">Astro und GitHub Pages</text>
+    <text x="155" y="420" font-weight="700">Ton</text><text x="320" y="420">Konkret, Schweizer Rechtschreibung</text>
+    <text x="155" y="474" font-weight="700">Danach</text><text x="320" y="474">Vorschau starten und testen</text>
+  </g>
+  <circle cx="967" cy="260" r="94" fill="#1556a6"/>
+  <path d="M923 241h88v60h-36l-24 22 5-22h-33z" fill="none" stroke="#fffefb" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M942 259h50M942 279h33" stroke="#f1b846" stroke-width="6" stroke-linecap="round"/>
+  <rect x="865" y="395" width="205" height="50" rx="25" fill="#c56643"/>
+  <text x="967" y="428" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="700" fill="#fff">Agent arbeitet</text>
+</svg>

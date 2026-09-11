@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 610" role="img" aria-labelledby="title desc">
+  <title id="title">Automatische Veröffentlichung über Git und GitHub Pages</title>
+  <desc id="desc">Der Coding-Agent prüft den Blog, erstellt einen Git-Commit, überträgt ihn zu GitHub und GitHub Pages veröffentlicht ihn.</desc>
+  <rect width="1200" height="610" rx="32" fill="#e7edf2"/>
+  <path d="M150 305H1050" stroke="#1556a6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1030 288l25 17-25 17" fill="none" stroke="#1556a6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(150 305)">
+      <circle r="92" fill="#fff" stroke="#10254a" stroke-width="3"/>
+      <path d="M-38 2l24 24 54-57" fill="none" stroke="#737d4d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <text y="142" font-size="24" font-weight="700" fill="#10254a">BUILD PRÜFEN</text>
+    </g>
+    <g transform="translate(450 305)">
+      <circle r="92" fill="#10254a"/>
+      <circle cx="-30" cy="-28" r="11" fill="#f1b846"/><circle cx="30" cy="28" r="11" fill="#f1b846"/>
+      <path d="M-30-17v25c0 20 14 20 30 20h19M-30-39v-18M30 17v-25c0-20-14-20-30-20h-19" fill="none" stroke="#f1b846" stroke-width="7" stroke-linecap="round"/>
+      <text y="142" font-size="24" font-weight="700" fill="#10254a">GIT-COMMIT</text>
+    </g>
+    <g transform="translate(750 305)">
+      <circle r="92" fill="#1556a6"/>
+      <path d="M-44 35V-35h88v70M-20-35v-22h40v22M-20 0h40" fill="none" stroke="#fff" stroke-width="7"/>
+      <text y="142" font-size="24" font-weight="700" fill="#10254a">PUSH ZU GITHUB</text>
+    </g>
+    <g transform="translate(1050 305)">
+      <circle r="92" fill="#c56643"/>
+      <rect x="-48" y="-38" width="96" height="72" rx="5" fill="none" stroke="#fff" stroke-width="7"/>
+      <path d="M-48-13h96M-31-26h2M-18-26h2" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      <text y="142" font-size="24" font-weight="700" fill="#10254a">PAGES IST LIVE</text>
+    </g>
+  </g>
+</svg>
